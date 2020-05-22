@@ -9,10 +9,10 @@
 #include "menu.h"
 
 int menu(array_char *string, array_char *string2, array_char *string3, array_char *subString){
-    char str[20];
-    char str1[20];
-    char str2[20];
-    char subSTR[20];
+    char str[100];
+    char str1[100];
+    char str2[100];
+    char subSTR[100];
 
     string = NULL;
     string2 = NULL;
@@ -59,22 +59,22 @@ int menu(array_char *string, array_char *string2, array_char *string3, array_cha
 
                 if(opt == 1){
                     string = CriarString(string);
-                    printf("Lista criada com sucesso!");
+                    printf("String criada com sucesso!\n");
                 } else if(opt == 2) {
                     string2 = CriarString(string2);
-                    printf("Lista criada com sucesso!");
+                    printf("String criada com sucesso!\n");
                 } else if(opt == 3) {
                     string3 = CriarString(string3);
-                    printf("Lista criada com sucesso!");
+                    printf("String criada com sucesso!\n");
                 } else if(opt == 4) {
                     subString = CriarString(subString);
-                    printf("Lista criada com sucesso!");
+                    printf("String criada com sucesso!\n");
                 } else if (opt == 0){
 
                 } else {
                     printf("Digite uma opcao valida!!\n\n");
                 }
-
+                system("pause");
             }while(opt != 0);
 
         } else if (op == 2) {
@@ -108,7 +108,7 @@ int menu(array_char *string, array_char *string2, array_char *string3, array_cha
                 } else {
                     printf("Digite uma opcao valida!!\n\n");
                 }
-
+                system("pause");
             }while(opt != 0);
         }else if (op == 3) {
             int opt = 1;
@@ -135,9 +135,10 @@ int menu(array_char *string, array_char *string2, array_char *string3, array_cha
                 } else if (opt == 0){
 
                 } else {
-                    printf("Digite uma opcao valida!!\n\n");
+                    printf("Digite uma opcao valida!!\n");
                 }
-
+                printf("\n");
+                system("pause");
             }while(opt != 0);
         }else if (op == 4) {
             int opt = 1;
@@ -155,22 +156,22 @@ int menu(array_char *string, array_char *string2, array_char *string3, array_cha
 
                 if(opt == 1){
                     tamanho = TamanhoDaString(string);
-                    printf("O tamanho da string selecionda eh: %d", tamanho);
+                    printf("O tamanho da string selecionda eh: %d\n", tamanho);
                 } else if(opt == 2) {
                     tamanho = TamanhoDaString(string2);
-                    printf("O tamanho da string selecionda eh: %d", tamanho);
+                    printf("O tamanho da string selecionda eh: %d\n", tamanho);
                 } else if(opt == 3) {
                     tamanho = TamanhoDaString(string3);
-                    printf("O tamanho da string selecionda eh: %d", tamanho);
+                    printf("O tamanho da string selecionda eh: %d\n", tamanho);
                 } else if(opt == 4) {
                     tamanho = TamanhoDaString(subString);
-                    printf("O tamanho da string selecionda eh: %d", tamanho);
+                    printf("O tamanho da string selecionda eh: %d\n", tamanho);
                 } else if (opt == 0){
 
                 } else {
                     printf("Digite uma opcao valida!!\n\n");
                 }
-
+                system("pause");
             }while(opt != 0);
         }else if (op == 5) {
             int tamanhoStr = 0;
@@ -190,7 +191,7 @@ int menu(array_char *string, array_char *string2, array_char *string3, array_cha
                 scanf("%d",&opt);
 
                 if(opt == 1){
-                    printf("Digite a string abaixo:");
+                    printf("Digite a string:");
                     scanf("%s",str);
                     tamanhoStr = strlen(str);
 
@@ -198,7 +199,7 @@ int menu(array_char *string, array_char *string2, array_char *string3, array_cha
                         InserirNaString(string,str[i]);
                     }
                 } else if(opt == 2) {
-                    printf("Digite a string abaixo:");
+                    printf("Digite a string:");
                     scanf("%s",str);
                     tamanhoStr = strlen(str);
 
@@ -206,7 +207,7 @@ int menu(array_char *string, array_char *string2, array_char *string3, array_cha
                         InserirNaString(string2,str[i]);
                     }
                 } else if(opt == 3) {
-                    printf("Digite a string abaixo:");
+                    printf("Digite a string:");
                     scanf("%s",str);
                     tamanhoStr = strlen(str);
 
@@ -214,7 +215,7 @@ int menu(array_char *string, array_char *string2, array_char *string3, array_cha
                         InserirNaString(string3,str[i]);
                     }
                 } else if(opt == 4) {
-                    printf("Digite a string abaixo:");
+                    printf("Digite a string:");
                     scanf("%s",str);
                     tamanhoStr = strlen(str);
 
@@ -226,7 +227,7 @@ int menu(array_char *string, array_char *string2, array_char *string3, array_cha
                 } else {
                     printf("Digite uma opcao valida!!\n\n");
                 }
-
+                system("pause");
             }while(opt);
         }else if (op == 6) {
             printf("Copiando o conteudo de string1 para string2\n");
@@ -252,7 +253,7 @@ int menu(array_char *string, array_char *string2, array_char *string3, array_cha
             int start = 0;
 
             printf("Inserindo substring em string1.\n");
-            printf("!! Atencao, se string e substring nao estiver escritas, ocorrera um erro fatal !!");
+            printf("!! Atencao, se string e substring nao estiver escritas, ocorrera um erro fatal !!\n\n");
 
             printf("Digite a posicao onde sera inserida a substring:\n>: ");
             scanf("%d", &start);

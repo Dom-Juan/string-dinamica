@@ -143,6 +143,12 @@ array_char *InserirSubString(int start, array_char *string, array_char *subStrin
     char_node *lastSubsTringNode = subString->last_char;
     char_node *firstSubsTringNode = subString->first_char;
 
+    /*
+    char_node *lastSubsTringNode = (char_node*)malloc(sizeof(char_node));
+     lastSubstringNode->caractere = subString->last_char->caractere;
+     lastSubstringNode->next = NULL;
+     */
+
     if(string->first_char == NULL)
         CopiarDeStringParaString(subString,string);
     else if(start == TamanhoDaString((string))){
@@ -153,6 +159,13 @@ array_char *InserirSubString(int start, array_char *string, array_char *subStrin
                 nextChar = temp->next;
                 temp->next = firstSubsTringNode;
                 lastSubsTringNode->next = nextChar;
+
+                /*
+                while(firstSubsTringNode->next != NULL){
+                    firstSubsTringNode = firstSubsTringNode->next;
+                }
+                firstSubsTringNode->next = nextChar;
+                */
 
                 //temporario->next = subString->first_char;
                 //subString->last_char->next = anterior;
