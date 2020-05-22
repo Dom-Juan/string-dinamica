@@ -125,13 +125,13 @@ int menu(array_char *string, array_char *string2, array_char *string3, array_cha
                 scanf("%d",&opt);
 
                 if(opt == 1){
-                    MostrarLista(string);
+                    MostrarString(string);
                 } else if(opt == 2) {
-                    MostrarLista(string2);
+                    MostrarString(string2);
                 } else if(opt == 3) {
-                    MostrarLista(string3);
+                    MostrarString(string3);
                 } else if(opt == 4) {
-                    MostrarLista(subString);
+                    MostrarString(subString);
                 } else if (opt == 0){
 
                 } else {
@@ -231,13 +231,13 @@ int menu(array_char *string, array_char *string2, array_char *string3, array_cha
         }else if (op == 6) {
             printf("Copiando o conteudo de string1 para string2\n");
             CopiarDeStringParaString(string,string2);
-            MostrarLista(string);
+            MostrarString(string);
 
 
         }else if (op == 7) {
             printf("Concatenando o conteudo de string1 com string2 para string3\n");
             ConcatenarString(string,string2,string3);
-            MostrarLista(string3);
+            MostrarString(string3);
 
 
         }else if (op == 8) {
@@ -258,7 +258,7 @@ int menu(array_char *string, array_char *string2, array_char *string3, array_cha
             scanf("%d", &start);
 
             InserirSubString(start,string,subString);
-            MostrarLista(string);
+            MostrarString(string);
 
 
         }else if (op == 10) {

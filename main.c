@@ -5,8 +5,7 @@
 
 #include "menu.h"
 
-//concatenar, tamanho, comparar.
-
+// Inicia a string selecionada
 array_char *CriarString(array_char *string){
     string = (array_char*)malloc(sizeof(array_char));
     string->first_char = NULL;
@@ -15,6 +14,7 @@ array_char *CriarString(array_char *string){
     return string;
 }
 
+// Renicia a string, deletando seus blocos de memória, mas sem deletar a string em si.
 void ReiniciaAString(array_char *string){
     char_node *auxNode = string->first_char;
     char_node *auxRemove = (char_node*)malloc(sizeof(char_node));
@@ -32,6 +32,7 @@ void ReiniciaAString(array_char *string){
     }
 }
 
+// Adiciona caracteres para formar uma string.
 void InserirNaString(array_char *string, char c){
     char_node *newNode = (char_node*)malloc(sizeof(char_node));
 
@@ -50,6 +51,7 @@ void InserirNaString(array_char *string, char c){
     }
 }
 
+// Copia de uma string para a outra.
 void CopiarDeStringParaString(array_char *string1, array_char *string2){
     char_node *auxNode;
     if(string1->first_char == NULL){
@@ -60,25 +62,13 @@ void CopiarDeStringParaString(array_char *string1, array_char *string2){
     }
 }
 
+// Concatena 2 strings para uma nova.
 void ConcatenarString(array_char *string1, array_char *string2, array_char *destino){
     char_node *auxNode = string1->first_char;
 
     if(string1->first_char == NULL || string2->first_char == NULL){
         printf("\n>String dinamica nao iniciada.\n");
     } else {
-        /*
-        while(auxNode != NULL) {
-            InserirNaString(destino,auxNode->caractere);
-            auxNode = auxNode->next;
-        }
-
-        auxNode = string2->first_char;
-
-        while(auxNode != NULL) {
-            InserirNaString(destino,auxNode->caractere);
-            auxNode = auxNode->next;
-        }
-        */
 
         array_char *localString = NULL;
         localString = CriarString(localString);
@@ -92,7 +82,7 @@ void ConcatenarString(array_char *string1, array_char *string2, array_char *dest
 
 }
 
-
+// Deleta conteudo da string de uma determinada posicao definida pelo start e uma quantidade.
 void DeletarCharNaPosicao(int start, int quantidade, array_char **string){
     char_node *auxNode;
     char_node *nodeDeletado = (char_node *) malloc(sizeof(char_node));
@@ -144,52 +134,7 @@ void DeletarCharNaPosicao(int start, int quantidade, array_char **string){
     }
 }
 
-
-/*
-void DeletarCharNaPosicao(int start, int quantidade, array_char **string) {
-    char_node *auxNode = (*string)->first_char;
-    char_node *temporario = (char_node *) malloc(sizeof(char_node));
-    char_node *anterior = (char_node *) malloc(sizeof(char_node));
-    char_node *nodeDeletado = (char_node *) malloc(sizeof(char_node));
-
-    int i = 0;
-    int j = 0;
-
-    temporario = (*string)->first_char;
-
-    if (temporario == NULL) {
-        printf("* Nao foi possivel deletar caracteres, pois a string esta vazia!!! *\n");
-    } else {
-        if (start == 0) {
-            while (i < quantidade) {
-                //printf("j: %d\n", j);
-                temporario = temporario->next;
-                i++;
-            }
-            auxNode = temporario;
-            (*string)->first_char = auxNode;
-
-        } else {
-            anterior = (*string)->first_char;
-            temporario = temporario->next;
-            anterior->next = NULL;
-
-            while (j < quantidade) {
-                nodeDeletado = temporario;
-                temporario = temporario->next;
-                j++;
-                free(nodeDeletado);
-            }
-            if (temporario == NULL) {
-                (*string)->last_char = anterior;
-            } else {
-                anterior->next = temporario;
-            }
-        }
-    }
-}
-*/
-
+// Inserir uma substring dentro de uma string.
 array_char *InserirSubString(int start, array_char *string, array_char *subString){
     int i = 0;
 
@@ -219,6 +164,7 @@ array_char *InserirSubString(int start, array_char *string, array_char *subStrin
     return NULL;
 }
 
+// Retorna o tamanho da string.
 int TamanhoDaString(array_char *string){
     int stringSize = 0;
 
@@ -243,6 +189,7 @@ int TamanhoDaString(array_char *string){
 
 }
 
+// Retorna um valor verdade ou falso ao comparar o tamanho das strings.
 bool CompararTamanhoDasStrings(array_char *string1, array_char *string2){
     int string1Size = TamanhoDaString(string1);
     int string2Size = TamanhoDaString(string2);
@@ -253,6 +200,7 @@ bool CompararTamanhoDasStrings(array_char *string1, array_char *string2){
         return false;
 }
 
+// Retorna um valor verdade se o conteudo for igual e falso e nao for.
 bool CompararConteudoStrings(array_char *string1,array_char *string2){
     char_node *auxNodeString1 = string1->first_char;
     char_node *auxNodeString2 = string2->first_char;
@@ -301,6 +249,7 @@ bool CompararConteudoStrings(array_char *string1,array_char *string2){
     return flag;
 }
 
+// Procura a posicao aonde a substring se inicia na string, se ela nao iniciar, eh pq a substring n existe.
 int ProcurarPosLocalString(array_char *string1, array_char *stringLocal){
     int local = 0;
 
@@ -337,7 +286,8 @@ int ProcurarPosLocalString(array_char *string1, array_char *stringLocal){
     return 0;
 }
 
-void MostrarLista(array_char *string) {
+// Mostra a string.
+void MostrarString(array_char *string) {
     char_node *auxNode = string->first_char;
     if(auxNode == NULL){
         printf("* String dinamica nao foi inicializada ou esta vazia! *\n");
@@ -349,20 +299,11 @@ void MostrarLista(array_char *string) {
     }
 }
 
+// Function criada quando o programa precisava ser testado para funcionar antes do menu.
 int __InitApp__(){
-    /*
-    char str1[30] = {'c','a','s','a'};
-    char str2[30]= {'b','b','b','\n'};
 
-    printf("string 1: %s\n",str1);
-    printf("string 2: %s\n",str2);
-
-    strcpy(str1,str2);
-
-    printf("%s",str1);
-    int a = strlen(str1);
-    printf("Tamanho: %d\n",a);
-*/
+    printf("       * Estrutuda de Dados I *\n");
+    printf(">String Dinamica< \n");
 
     array_char *string = NULL;
     array_char *string2 = NULL;
@@ -391,15 +332,15 @@ int __InitApp__(){
     printf("Antes de copiar:\n");
 
     printf("String: ");
-    MostrarLista(string);
+    MostrarString(string);
     printf("\n");
 
     printf("String2: ");
-    MostrarLista(string2);
+    MostrarString(string2);
     printf("\n");
 
     printf("String3: ");
-    MostrarLista(string3);
+    MostrarString(string3);
     printf("\n");
 
     CopiarDeStringParaString(string,string2);
@@ -407,19 +348,19 @@ int __InitApp__(){
     printf("Depois de copiar:\n");
 
     printf("String: ");
-    MostrarLista(string);
+    MostrarString(string);
     printf("\n");
 
     printf("String2: ");
-    MostrarLista(string2);
+    MostrarString(string2);
     printf("\n");
 
     printf("String3: ");
-    MostrarLista(string3);
+    MostrarString(string3);
     printf("\n");
 
     int tam = TamanhoDaString(string2);
-    printf("\nTamanho da string2 eh: %d\n",tam);
+    printf("\nTamanho da string2 eh: %d\n\n",tam);
 
     printf("Reiniciando string\n");
     ReiniciaAString(string);
@@ -431,15 +372,15 @@ int __InitApp__(){
     InserirNaString(string, 'u');
 
     printf("String: ");
-    MostrarLista(string);
+    MostrarString(string);
     printf("\n");
 
     printf("String2: ");
-    MostrarLista(string2);
+    MostrarString(string2);
     printf("\n");
 
     printf("String3: ");
-    MostrarLista(string3);
+    MostrarString(string3);
     printf("\n");
 
     printf("Fim Reiniciando string\n");
@@ -452,15 +393,15 @@ int __InitApp__(){
     fflush(stdin);
 
     printf("String: ");
-    MostrarLista(string);
+    MostrarString(string);
     printf("\n");
 
     printf("String2: ");
-    MostrarLista(string2);
+    MostrarString(string2);
     printf("\n");
 
     printf("String3: ");
-    MostrarLista(string3);
+    MostrarString(string3);
     printf("\n");
 
     printf("\nFim Concatenando strings:\n");
@@ -470,18 +411,18 @@ int __InitApp__(){
     DeletarCharNaPosicao(3,1, &string3);
 
     printf("String: ");
-    MostrarLista(string);
+    MostrarString(string);
     printf("\n");
 
     printf("String2: ");
-    MostrarLista(string2);
+    MostrarString(string2);
     printf("\n");
 
     printf("String3: ");
-    MostrarLista(string3);
+    MostrarString(string3);
     printf("\n");
 
-    printf("\n>Deletado elementos da string 3.\n");
+    printf("\n >Deletado elementos da string 3.\n");
 
     printf("\nFim Deletando elementos:\n");
 
@@ -496,11 +437,11 @@ int __InitApp__(){
     InserirNaString(string2, 'a');
 
     printf("String: ");
-    MostrarLista(string);
+    MostrarString(string);
     printf("\n");
 
     printf("String2: ");
-    MostrarLista(string2);
+    MostrarString(string2);
     printf("\n");
 
     if(CompararConteudoStrings(string, string2)){
@@ -518,17 +459,17 @@ int __InitApp__(){
     InserirNaString(string2, 'e');
 
     printf("String: ");
-    MostrarLista(string);
+    MostrarString(string);
     printf("\n");
 
     printf("String2: ");
-    MostrarLista(string2);
+    MostrarString(string2);
     printf("\n");
 
     string = InserirSubString(1,string,string2);
 
     printf("String: ");
-    MostrarLista(string);
+    MostrarString(string);
     printf("\n");
 
     printf("\nFim Inserir substring na string!\n");
@@ -557,15 +498,15 @@ int __InitApp__(){
     printf("\n");
 
     printf("String: ");
-    MostrarLista(string);
+    MostrarString(string);
     printf("\n");
 
     printf("String2: ");
-    MostrarLista(string2);
+    MostrarString(string2);
     printf("\n");
 
     printf("String3: ");
-    MostrarLista(string3);
+    MostrarString(string3);
     printf("\n");
 
     printf("Local: %d\n",ProcurarPosLocalString(string, string2));
@@ -581,9 +522,6 @@ int main() {
     array_char *string2 = NULL;
     array_char *string3 = NULL;
     array_char *stringsub = NULL;
-
-    printf("       * Estrutuda de Dados I *\n");
-    printf(">String Dinamica< \n");
 
     //__InitApp__();
     menu(string, string2, string3, stringsub);
