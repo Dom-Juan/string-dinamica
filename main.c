@@ -140,8 +140,25 @@ array_char *InserirSubString(int start, array_char *string, array_char *subStrin
 
     char_node *nextChar;
     char_node *temp;
-    char_node *lastSubsTringNode = subString->last_char;
+    char_node *lastSubsTringNode;
     char_node *firstSubsTringNode = subString->first_char;
+
+    array_char *localSubstring = NULL;
+    localSubstring = CriarString(localSubstring);
+
+    while(firstSubsTringNode != NULL){
+        InserirNaString(localSubstring,firstSubsTringNode->caractere);
+        firstSubsTringNode = firstSubsTringNode->next;
+    }
+
+    firstSubsTringNode = localSubstring->first_char;
+    lastSubsTringNode = localSubstring->last_char;
+
+    /*
+    char_node *lastSubsTringNode = (char_node*)malloc(sizeof(char_node));
+     lastSubstringNode->caractere = subString->last_char->caractere;
+     lastSubstringNode->next = NULL;
+     */
 
     if(string->first_char == NULL)
         CopiarDeStringParaString(subString,string);
@@ -159,6 +176,7 @@ array_char *InserirSubString(int start, array_char *string, array_char *subStrin
             }
             i++;
         }
+        free(localSubstring);
         return string;
     }
     return NULL;
@@ -470,6 +488,10 @@ int __InitApp__(){
 
     printf("String: ");
     MostrarString(string);
+    printf("\n");
+
+    printf("String2: ");
+    MostrarString(string2);
     printf("\n");
 
     printf("\nFim Inserir substring na string!\n");
