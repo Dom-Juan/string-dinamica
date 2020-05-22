@@ -140,8 +140,19 @@ array_char *InserirSubString(int start, array_char *string, array_char *subStrin
 
     char_node *nextChar;
     char_node *temp;
-    char_node *lastSubsTringNode = subString->last_char;
+    char_node *lastSubsTringNode;
     char_node *firstSubsTringNode = subString->first_char;
+
+    array_char *localSubstring = NULL;
+    localSubstring = CriarString(localSubstring);
+
+    while(firstSubsTringNode != NULL){
+        InserirNaString(localSubstring,firstSubsTringNode->caractere);
+        firstSubsTringNode = firstSubsTringNode->next;
+    }
+
+    firstSubsTringNode = localSubstring->first_char;
+    lastSubsTringNode = localSubstring->last_char;
 
     /*
     char_node *lastSubsTringNode = (char_node*)malloc(sizeof(char_node));
@@ -160,18 +171,12 @@ array_char *InserirSubString(int start, array_char *string, array_char *subStrin
                 temp->next = firstSubsTringNode;
                 lastSubsTringNode->next = nextChar;
 
-                /*
-                while(firstSubsTringNode->next != NULL){
-                    firstSubsTringNode = firstSubsTringNode->next;
-                }
-                firstSubsTringNode->next = nextChar;
-                */
-
                 //temporario->next = subString->first_char;
                 //subString->last_char->next = anterior;
             }
             i++;
         }
+        free(localSubstring);
         return string;
     }
     return NULL;
@@ -483,6 +488,10 @@ int __InitApp__(){
 
     printf("String: ");
     MostrarString(string);
+    printf("\n");
+
+    printf("String2: ");
+    MostrarString(string2);
     printf("\n");
 
     printf("\nFim Inserir substring na string!\n");
